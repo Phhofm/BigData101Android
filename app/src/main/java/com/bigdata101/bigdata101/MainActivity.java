@@ -20,7 +20,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements PlusOneFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements BigData101Fragment.OnFragmentInteractionListener {
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements PlusOneFragment.O
                 if (selectedFromList.equals("Introduction")){
                     Log.d("clicked", "introduction");
                     getSupportFragmentManager()
-                            .beginTransaction().add(R.id.fragment_container, new PlusOneFragment()).commit();
+                            .beginTransaction().add(R.id.fragment_container, new BigData101Fragment()).commit();
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
             }
