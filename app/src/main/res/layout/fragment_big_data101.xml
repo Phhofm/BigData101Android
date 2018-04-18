@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BigData101Fragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/introduction"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Display1" />
+
+            <TextView
+                android:id="@+id/headline_subtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/intro_text" />
+
+            <TextView
+                android:id="@+id/technology"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/technology"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+
+            <TextView
+                android:id="@+id/technology_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/technology_text" />
+
+            <TextView
+                android:id="@+id/law"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/law"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+
+            <TextView
+                android:id="@+id/law_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/law_text" />
+
+            <TextView
+                android:id="@+id/combination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/combination"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+
+            <TextView
+                android:id="@+id/combination_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/combination_text"
+                android:text="@string/combination_text" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
