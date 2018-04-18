@@ -60,7 +60,13 @@ public class MainActivity extends AppCompatActivity implements PlusOneFragment.O
                 if (selectedFromList.equals("Introduction")){
                     Log.d("clicked", "introduction");
                     getSupportFragmentManager()
-                            .beginTransaction().add(R.id.fragment_container, new PlusOneFragment()).commit();
+                            .beginTransaction().add(R.id.fragment_container, PlusOneFragment.newInstance(null, null)).commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                if (selectedFromList.equals("Technology news")){
+                    Log.d("clicked", "tech news");
+                    getSupportFragmentManager()
+                            .beginTransaction().add(R.id.fragment_container, new RecyclerViewFragment()).commit();
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
             }
