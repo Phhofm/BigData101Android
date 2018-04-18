@@ -9,6 +9,15 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#dd0f0e0e"
+            app:title="Big Data 101"
+            app:titleTextAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            app:titleTextColor="#FFFFFF"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -16,15 +25,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="#dd0f0e0e"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:title="Big Data 101"
-                app:titleTextAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                app:titleTextColor="#FFFFFF" />
         </FrameLayout>
 
 
