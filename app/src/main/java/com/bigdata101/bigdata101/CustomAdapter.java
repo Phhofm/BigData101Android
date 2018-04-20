@@ -24,20 +24,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bigdata101.bigdata101.model.Article;
+import com.bigdata101.bigdata101.service.DateFormatter;
+
+import java.util.ArrayList;
+
 /**
  * Provide views to RecyclerView with data from mDataSet.
  */
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
-    private String[] mDataSet;
+    private ArrayList<Article> mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final TextView titleView;
+        private final TextView authorView;
+        private final TextView dateView;
 
         public ViewHolder(View v) {
             super(v);
@@ -48,11 +55,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
-            textView = (TextView) v.findViewById(R.id.textView);
+            titleView =  v.findViewById(R.id.title_text);
+            authorView =  v.findViewById(R.id.author_text);
+            dateView =  v.findViewById(R.id.date_text);
         }
 
-        public TextView getTextView() {
-            return textView;
+        public TextView getTitleView() {
+            return titleView;
+        }
+        public TextView getAuthorView() {
+            return authorView;
+        }
+        public TextView getDateView() {
+            return dateView;
         }
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
@@ -62,7 +77,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomAdapter(String[] dataSet) {
+    public CustomAdapter(ArrayList dataSet) {
         mDataSet = dataSet;
     }
 
@@ -86,13 +101,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTextView().setText(mDataSet[position]);
+        viewHolder.getTitleView().setText(mDataSet.get(position).getTitle());
+        viewHolder.getAuthorView().setText(mDataSet.get(position).getAuthor());
+        viewHolder.getDateView().setText(DateFormatter.getFormattedDate( mDataSet.get(position).getRequestTime()));
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return mDataSet.size();
     }
 }

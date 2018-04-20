@@ -20,20 +20,21 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BigData101Fragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements BigData101Fragment.OnFragmentInteractionListener, ErrorFragment.OnFragmentInteractionListener {
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ArrayAdapter stringAdaptor;
 
 
+    private static String techArticlesEndpoint = "http://10.0.2.2:3000/api/articles/Technology";
+    private static String lawArticlesEndpoint = "http://10.0.2.2:3000/api/articles/Law";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        getSupportActionBar().setCustomView(R.layout.abs_layout);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,18 +58,31 @@ public class MainActivity extends AppCompatActivity implements BigData101Fragmen
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedFromList = adapterView.getItemAtPosition(i).toString();
+                if (selectedFromList.equals("Home")){
+                    Log.d("clicked", "home");
+                    getSupportFragmentManager()
+                            .beginTransaction().replace(R.id.fragment_container, BigData101Fragment.newInstance(null,null)).commit();
+
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
                 if (selectedFromList.equals("Introduction")){
                     Log.d("clicked", "introduction");
                     getSupportFragmentManager()
-                            .beginTransaction().add(R.id.fragment_container, new BigData101Fragment()).commit();
+                            .beginTransaction().replace(R.id.fragment_container, BigData101Fragment.newInstance(null,null)).commit();
 
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
                 if (selectedFromList.equals("Technology news")){
                     Log.d("clicked", "tech news");
                     getSupportFragmentManager()
-                            .beginTransaction().add(R.id.fragment_container, new RecyclerViewFragment()).commit();
-
+                            .beginTransaction().replace(R.id.fragment_container, RecyclerViewFragment.newInstance(techArticlesEndpoint,null)).addToBackStack("techFragment").commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                if (selectedFromList.equals("Law news")){
+                    Log.d("clicked", "tech news");
+                    getSupportFragmentManager()
+                            .beginTransaction().replace(R.id.fragment_container, RecyclerViewFragment.newInstance(lawArticlesEndpoint,null)).addToBackStack("lawFragment").commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
                 }
             }
         });

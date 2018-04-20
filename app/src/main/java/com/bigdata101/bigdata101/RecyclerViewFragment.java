@@ -16,26 +16,61 @@
 
 package com.bigdata101.bigdata101;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
+
+import com.bigdata101.bigdata101.model.Article;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Demonstrates the use of {@link RecyclerView} with a {@link LinearLayoutManager} and a
  * {@link GridLayoutManager}.
  */
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment  {
+
+    private static final String ARG_URL = "url_param";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String articlesEndpoint;
+    private String mParam2;
+
+
+
+    public RecyclerViewFragment(){}
+
+    public static RecyclerViewFragment newInstance(String param1, String param2){
+        RecyclerViewFragment fragment = new RecyclerViewFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_URL, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
-    private static final int SPAN_COUNT = 4;
-    private static final int DATASET_COUNT = 60;
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -44,21 +79,30 @@ public class RecyclerViewFragment extends Fragment {
 
     protected LayoutManagerType mCurrentLayoutManagerType;
 
-    protected RadioButton mLinearLayoutRadioButton;
-    protected RadioButton mGridLayoutRadioButton;
-
+    protected SwipeRefreshLayout swipeRefreshLayout;
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected String[] mDataset;
+    protected ArrayList<Article> mDataset;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments()!=null){
+            articlesEndpoint = getArguments().getString(ARG_URL);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
 
         // Initialize dataset, this data would usually come from a local content provider or
         // remote server.
         initDataset();
+        fetchData();
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     @Override
@@ -68,7 +112,18 @@ public class RecyclerViewFragment extends Fragment {
         rootView.setTag(TAG);
 
         // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
+        mRecyclerView = rootView.findViewById(R.id.recyclerView);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchData();
+
+            }
+        });
+
+
 
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
@@ -89,21 +144,7 @@ public class RecyclerViewFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
 
-        mLinearLayoutRadioButton = (RadioButton) rootView.findViewById(R.id.linear_layout_rb);
-        mLinearLayoutRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setRecyclerViewLayoutManager(LayoutManagerType.LINEAR_LAYOUT_MANAGER);
-            }
-        });
 
-        mGridLayoutRadioButton = (RadioButton) rootView.findViewById(R.id.grid_layout_rb);
-        mGridLayoutRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setRecyclerViewLayoutManager(LayoutManagerType.GRID_LAYOUT_MANAGER);
-            }
-        });
 
         return rootView;
     }
@@ -122,19 +163,10 @@ public class RecyclerViewFragment extends Fragment {
                     .findFirstCompletelyVisibleItemPosition();
         }
 
-        switch (layoutManagerType) {
-            case GRID_LAYOUT_MANAGER:
-                mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
-                mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
-                break;
-            case LINEAR_LAYOUT_MANAGER:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-                break;
-            default:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-        }
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.scrollToPosition(scrollPosition);
@@ -152,9 +184,81 @@ public class RecyclerViewFragment extends Fragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "This is element #" + i;
-        }
+        mDataset = new ArrayList<>();
+    }
+
+    private void fetchData(){
+        OkHttpClient client = new OkHttpClient();
+
+
+        final Gson gson = new Gson();
+
+        Request request = new Request.Builder()
+                .url(articlesEndpoint)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d("fail", "okhtpfail");
+                e.printStackTrace();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(swipeRefreshLayout.isRefreshing()){
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }
+                });
+
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, ErrorFragment.newInstance(null,null))
+                        .commit();
+
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String jsonResponse = response.body().string();
+                Article[] articles = gson.fromJson(jsonResponse, Article[].class);
+                mDataset.clear();
+                mDataset.addAll(Arrays.asList(articles));
+                Log.d("succ", "sees");
+                if (mRecyclerView!=null && !mRecyclerView.isComputingLayout()){
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    });
+
+                };
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(swipeRefreshLayout.isRefreshing()){
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }
+                });
+
+
+            }
+        });
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        dataChanged();
+
+
+    }
+
+    private void dataChanged(){
+        mAdapter.notifyDataSetChanged();
     }
 }
