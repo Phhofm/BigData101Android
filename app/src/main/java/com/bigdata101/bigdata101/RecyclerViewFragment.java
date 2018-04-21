@@ -115,6 +115,8 @@ public class RecyclerViewFragment extends Fragment  {
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
 
+
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

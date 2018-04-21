@@ -17,6 +17,8 @@
 package com.bigdata101.bigdata101;
 
 
+import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +37,22 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
+    RecyclerView recyclerView;
+
+    MyListerner listerner;
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView;
+
+    }
+
+    @Override
+    public void onViewAttachedToWindow(ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+    }
+
     private ArrayList<Article> mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
@@ -46,19 +64,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         private final TextView authorView;
         private final TextView dateView;
 
-        public ViewHolder(View v) {
+
+        public ViewHolder(View v, final MyListerner listerner) {
             super(v);
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
+                    listerner.onClick(getAdapterPosition());
+
+
+
                 }
             });
             titleView =  v.findViewById(R.id.title_text);
             authorView =  v.findViewById(R.id.author_text);
             dateView =  v.findViewById(R.id.date_text);
         }
+
+
 
         public TextView getTitleView() {
             return titleView;
@@ -84,12 +109,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
     // Create new views (invoked by the layout manager)
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int viewType) {
         // Create a new view.
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.text_row_item, viewGroup, false);
 
-        return new ViewHolder(v);
+        return new ViewHolder(v, new MyListerner() {
+            @Override
+            public void onClick(int position) {
+                Article article = mDataSet.get(position);
+                AppCompatActivity activity = (AppCompatActivity) viewGroup.getContext();
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, ArticleView.newInstance(null,null))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
     // END_INCLUDE(recyclerViewOnCreateViewHolder)
 
