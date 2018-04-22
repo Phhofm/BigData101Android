@@ -1,10 +1,13 @@
 package com.bigdata101.bigdata101.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Silas on 4/17/2018.
  */
 
-public class Article {
+public class Article implements Parcelable {
 
     private String id;
     private String title;
@@ -35,5 +38,15 @@ public class Article {
 
     public long getRequestTime() {
         return requestTime;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

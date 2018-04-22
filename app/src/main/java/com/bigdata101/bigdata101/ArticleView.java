@@ -3,10 +3,15 @@ package com.bigdata101.bigdata101;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.bigdata101.bigdata101.model.Article;
+import com.bigdata101.bigdata101.service.DateFormatter;
 
 
 /**
@@ -24,7 +29,7 @@ public class ArticleView extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private Article article;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -42,10 +47,10 @@ public class ArticleView extends Fragment {
      * @return A new instance of fragment ArticleView.
      */
     // TODO: Rename and change types and number of parameters
-    public static ArticleView newInstance(String param1, String param2) {
+    public static ArticleView newInstance(Parcelable param1, String param2) {
         ArticleView fragment = new ArticleView();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putParcelable(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -55,7 +60,7 @@ public class ArticleView extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            article = getArguments().getParcelable(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -64,7 +69,17 @@ public class ArticleView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_article_view, container, false);
+        View rootview =  inflater.inflate(R.layout.fragment_article_view, container, false);
+
+        TextView articleText = rootview.findViewById(R.id.article_view);
+        TextView authorText = rootview.findViewById(R.id.article_view_author);
+        TextView dateText = rootview.findViewById(R.id.article_view_date);
+        articleText.setText(article.getArticle());
+        authorText.append(article.getAuthor());
+        dateText.append(DateFormatter.getFormattedDate(article.getRequestTime()));
+
+
+        return rootview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

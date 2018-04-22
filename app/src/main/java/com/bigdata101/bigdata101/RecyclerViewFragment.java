@@ -55,6 +55,8 @@ public class RecyclerViewFragment extends Fragment  {
     private String articlesEndpoint;
     private String mParam2;
 
+    private Call call;
+
 
 
     public RecyclerViewFragment(){}
@@ -189,6 +191,15 @@ public class RecyclerViewFragment extends Fragment  {
         mDataset = new ArrayList<>();
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(call !=null){
+            call.cancel();
+        }
+
+    }
+
     private void fetchData(){
         OkHttpClient client = new OkHttpClient();
 
@@ -199,24 +210,28 @@ public class RecyclerViewFragment extends Fragment  {
                 .url(articlesEndpoint)
                 .build();
 
-        client.newCall(request).enqueue(new Callback() {
+        call = client.newCall(request);
+        call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d("fail", "okhtpfail");
                 e.printStackTrace();
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(swipeRefreshLayout.isRefreshing()){
-                            swipeRefreshLayout.setRefreshing(false);
+                Fragment recylcerView = getActivity().getSupportFragmentManager().findFragmentById(R.id.recyclerView);
+                if (recylcerView != null && recylcerView.isVisible()) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (swipeRefreshLayout.isRefreshing()) {
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
                         }
-                    }
-                });
+                    });
 
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, ErrorFragment.newInstance(null,null))
-                        .commit();
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, ErrorFragment.newInstance(null, null))
+                            .commit();
+                }
 
 
             }

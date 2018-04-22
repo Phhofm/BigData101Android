@@ -120,7 +120,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 Article article = mDataSet.get(position);
                 AppCompatActivity activity = (AppCompatActivity) viewGroup.getContext();
                 activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, ArticleView.newInstance(null,null))
+                        .replace(R.id.fragment_container, ArticleView.newInstance(article,null))
                         .addToBackStack(null)
                         .commit();
             }
