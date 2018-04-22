@@ -21,7 +21,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BigData101Fragment.OnFragmentInteractionListener, ErrorFragment.OnFragmentInteractionListener, ArticleView.OnFragmentInteractionListener, WelcomeFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements BigData101Fragment.OnFragmentInteractionListener, ErrorFragment.OnFragmentInteractionListener, ArticleView.OnFragmentInteractionListener, WelcomeFragment.OnFragmentInteractionListener, Subchapter1Fragment.OnFragmentInteractionListener {
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements BigData101Fragmen
 
     private static String techArticlesEndpoint = "http://10.0.2.2:3000/api/articles/Technology";
     private static String lawArticlesEndpoint = "http://10.0.2.2:3000/api/articles/Law";
-
+    boolean clicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +46,12 @@ public class MainActivity extends AppCompatActivity implements BigData101Fragmen
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerList = findViewById(R.id.left_drawer);
 
-        List<String> drawerMenuesList = new ArrayList<String>();
+        final List<String> drawerMenuesList = new ArrayList<String>();
         drawerMenuesList.add("Home");
         drawerMenuesList.add("Introduction");
         drawerMenuesList.add("Technology news");
         drawerMenuesList.add("Law news");
+        drawerMenuesList.add("Chapters");
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, WelcomeFragment.newInstance(null, null))
@@ -59,10 +60,30 @@ public class MainActivity extends AppCompatActivity implements BigData101Fragmen
         stringAdaptor = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerMenuesList);
         drawerList.setAdapter(stringAdaptor);
 
+
+
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedFromList = adapterView.getItemAtPosition(i).toString();
+
+                if (selectedFromList.equals("Chapters") && !clicked){
+                    Log.d("chapterclick", "subchapter");
+                    drawerMenuesList.add("Subchapter1");
+                    drawerMenuesList.add("Subchapter2");
+                    drawerMenuesList.add("Subchapter3");
+                    clicked = true;
+                    stringAdaptor.notifyDataSetChanged();
+                    return;
+                }
+                if (selectedFromList.equals("Chapters") && clicked){
+                    drawerMenuesList.remove("Subchapter1");
+                    drawerMenuesList.remove("Subchapter2");
+                    drawerMenuesList.remove("Subchapter3");
+                    clicked = false;
+                    stringAdaptor.notifyDataSetChanged();
+                    return;
+                }
                 if (selectedFromList.equals("Home")) {
                     Log.d("clicked", "home");
                     for (Fragment fragment : getSupportFragmentManager().getFragments()) {
@@ -105,6 +126,16 @@ public class MainActivity extends AppCompatActivity implements BigData101Fragmen
                             .replace(R.id.fragment_container, RecyclerViewFragment.newInstance(lawArticlesEndpoint,null))
                             .addToBackStack("lawFragment")
                             .commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                if (selectedFromList.equals("Subchapter1")){
+                    Log.d("clicked", "subchapter1");
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, Subchapter1Fragment.newInstance(null,null))
+                            .addToBackStack(null)
+                            .commit();
+
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
             }
