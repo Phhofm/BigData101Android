@@ -16,11 +16,13 @@
 
 package com.bigdata101.bigdata101;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -217,7 +219,7 @@ public class RecyclerViewFragment extends Fragment  {
             public void onFailure(Call call, IOException e) {
                 Log.d("fail", "okhtpfail");
                 e.printStackTrace();
-                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(Constants.NEWS_FRAGMENT_TAG);
+                Fragment fragment = ((AppCompatActivity)getContext()).getSupportFragmentManager().findFragmentByTag(Constants.NEWS_FRAGMENT_TAG);
                 if (fragment != null && fragment.isVisible()) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -231,6 +233,7 @@ public class RecyclerViewFragment extends Fragment  {
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container, ErrorFragment.newInstance(null, null))
+                            .addToBackStack(null)
                             .commit();
                 }
 
