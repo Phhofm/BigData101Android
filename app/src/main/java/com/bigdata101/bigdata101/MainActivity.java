@@ -3,6 +3,8 @@ package com.bigdata101.bigdata101;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Debug;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import com.bigdata101.bigdata101.constants.Constants;
 
@@ -27,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
+
+
+
     private ArrayAdapter stringAdaptor;
 
 
@@ -58,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
         drawerMenuesList.add("Technology news");
         drawerMenuesList.add("Law news");
         drawerMenuesList.add("Chapters");
+
+
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, WelcomeFragment.newInstance(null, null))
@@ -146,6 +156,46 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
                 }
             }
         });
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        findViewById(R.id.content_frame).post(new Runnable() {
+            @Override
+            public void run() {
+
+                final View popupView = getLayoutInflater().inflate(R.layout.popup_view, null);
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow.showAtLocation(popupView, Gravity.CENTER, 0,0);
+
+
+                popupView.findViewById(R.id.accept_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                        Log.d("popup", "accpeted");
+                    }
+                });
+
+                popupView.findViewById(R.id.decline_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+        });
+
+
+
     }
 
     @Override
@@ -159,10 +209,12 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(R.layout.drawer_layout)) {
-            drawerLayout.closeDrawer(R.layout.drawer_layout);
+        if (drawerLayout.isDrawerOpen(R.id.drawer_layout)) {
+            drawerLayout.closeDrawer(R.id.drawer_layout);
         }
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();

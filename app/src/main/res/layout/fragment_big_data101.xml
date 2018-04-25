@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BigData101Fragment">
+    tools:context=".BigData101Fragment"
+    android:id="@+id/bigdata101">
 
     <ScrollView
         android:layout_width="match_parent"
