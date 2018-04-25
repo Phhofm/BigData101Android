@@ -17,7 +17,6 @@
 package com.bigdata101.bigdata101;
 
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -120,7 +119,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 Article article = mDataSet.get(position);
                 AppCompatActivity activity = (AppCompatActivity) viewGroup.getContext();
                 activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, ArticleView.newInstance(article,null))
+                        .replace(R.id.fragment_container, ArticleViewFragment.newInstance(article,null))
                         .addToBackStack(null)
                         .commit();
             }

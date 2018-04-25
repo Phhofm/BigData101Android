@@ -21,7 +21,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BigData101Fragment.OnFragmentInteractionListener, ErrorFragment.OnFragmentInteractionListener, ArticleView.OnFragmentInteractionListener, WelcomeFragment.OnFragmentInteractionListener, Subchapter1Fragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MyFragmentInteraction {
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -168,8 +168,10 @@ public class MainActivity extends AppCompatActivity implements BigData101Fragmen
         }
     }
 
+
+
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void fragmentInteraction() {
 
     }
 }
