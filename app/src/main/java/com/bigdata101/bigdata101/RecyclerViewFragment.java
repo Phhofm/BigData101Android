@@ -58,6 +58,8 @@ public class RecyclerViewFragment extends Fragment  {
     private String articlesEndpoint;
     private String mParam2;
 
+    private MyFragmentInteraction myFragmentInteraction;
+
     private Call call;
 
 
@@ -108,6 +110,7 @@ public class RecyclerViewFragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        myFragmentInteraction = (MyFragmentInteraction) context;
     }
 
     @Override
@@ -217,26 +220,8 @@ public class RecyclerViewFragment extends Fragment  {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d("fail", "okhtpfail");
-                e.printStackTrace();
-                Fragment fragment = ((AppCompatActivity)getContext()).getSupportFragmentManager().findFragmentByTag(Constants.NEWS_FRAGMENT_TAG);
-                if (fragment != null && fragment.isVisible()) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (swipeRefreshLayout.isRefreshing()) {
-                                swipeRefreshLayout.setRefreshing(false);
-                            }
-                        }
-                    });
-
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, ErrorFragment.newInstance(null, null))
-                            .addToBackStack(null)
-                            .commit();
-                }
-
+              e.printStackTrace();
+              myFragmentInteraction.recyclerCallback();
 
             }
 
