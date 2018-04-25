@@ -18,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.bigdata101.bigdata101.constants.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +30,12 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
     private ArrayAdapter stringAdaptor;
 
 
-    private static String techArticlesEndpoint = "http://10.0.2.2:3000/api/articles/Technology";
-    private static String lawArticlesEndpoint = "http://10.0.2.2:3000/api/articles/Law";
+    private String techArticlesEndpoint = Constants.TECH_ARTICLES_ENDPOINT;
+    private String lawArticlesEndpoint = Constants.LAW_ARTICLES_ENDPOINT;
+
+    private String newsFragmentTag = Constants.NEWS_FRAGMENT_TAG;
+
+    private
     boolean clicked = false;
 
     @Override
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
                     Log.d("clicked", "tech news");
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container, RecyclerViewFragment.newInstance(techArticlesEndpoint,null))
+                            .replace(R.id.fragment_container, RecyclerViewFragment.newInstance(techArticlesEndpoint,null), newsFragmentTag)
                             .addToBackStack("techFragment").
                             commit();
                     drawerLayout.closeDrawer(GravityCompat.START);
@@ -123,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
                     Log.d("clicked", "tech news");
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container, RecyclerViewFragment.newInstance(lawArticlesEndpoint,null))
+                            .replace(R.id.fragment_container, RecyclerViewFragment.newInstance(lawArticlesEndpoint,null), newsFragmentTag)
                             .addToBackStack("lawFragment")
                             .commit();
                     drawerLayout.closeDrawer(GravityCompat.START);

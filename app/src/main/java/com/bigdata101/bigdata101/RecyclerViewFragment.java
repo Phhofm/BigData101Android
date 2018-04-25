@@ -29,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bigdata101.bigdata101.constants.Constants;
 import com.bigdata101.bigdata101.model.Article;
 import com.google.gson.Gson;
 
@@ -216,8 +217,8 @@ public class RecyclerViewFragment extends Fragment  {
             public void onFailure(Call call, IOException e) {
                 Log.d("fail", "okhtpfail");
                 e.printStackTrace();
-                Fragment recylcerView = getActivity().getSupportFragmentManager().findFragmentById(R.id.recyclerView);
-                if (recylcerView != null && recylcerView.isVisible()) {
+                Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(Constants.NEWS_FRAGMENT_TAG);
+                if (fragment != null && fragment.isVisible()) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
