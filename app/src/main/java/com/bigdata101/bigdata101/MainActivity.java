@@ -276,6 +276,23 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (popupWindow != null) {
+            popupWindow.dismiss();
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (popupWindow != null) {
+            popupWindow.dismiss();
+        }
+    }
+
+    @Override
     public void recyclerCallback() {
         Log.d("callbakc", "hi");
 
