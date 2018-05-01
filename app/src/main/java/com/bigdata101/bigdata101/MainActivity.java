@@ -32,22 +32,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements MyFragmentInteraction {
 
 
-    ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
-
+    private List<String> listDataHeader;
+    private HashMap<String, List<String>> listDataChild;
+    private SharedPreferences sharedPreferences;
     private DrawerLayout drawerLayout;
-    private ListView drawerList;
-
     private View popupView;
-
-    SharedPreferences sharedPreferences;
-
-
-    private ArrayAdapter stringAdaptor;
     private PopupWindow popupWindow;
-
 
     private String techArticlesEndpoint = Constants.TECH_ARTICLES_ENDPOINT;
     private String lawArticlesEndpoint = Constants.LAW_ARTICLES_ENDPOINT;
@@ -55,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
 
     private boolean accepted_legal_disclaimer;
 
-    private boolean clicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +59,16 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
 
 
         sharedPreferences = getPreferences(MODE_PRIVATE);
-        Log.d("legal", Boolean.toString(accepted_legal_disclaimer));
         accepted_legal_disclaimer = sharedPreferences.getBoolean("legal_accepted", false);
         drawerLayout = findViewById(R.id.drawer_layout);
 
         // get the listview
-        expListView = (ExpandableListView) findViewById(R.id.left_drawer);
+        ExpandableListView expListView = (ExpandableListView) findViewById(R.id.left_drawer);
 
         // preparing list data
         prepareListData();
 
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        ExpandableListAdapter listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
@@ -91,16 +79,74 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
-                return false;
+
+                String selectedFromList =listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+
+                if (selectedFromList.equals("Home")) {
+                    Log.d("clicked", "home");
+                    for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+
+                        if (fragment != null)
+                            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+                    }
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, WelcomeFragment.newInstance(null, null))
+                            .commit();
+
+
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+
+
+
+                }
+
+                if (selectedFromList.equals("Introduction")){
+                    Log.d("clicked", "introduction");
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, BigData101Fragment.newInstance(null,null))
+                            .addToBackStack(null)
+                            .commit();
+
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+                if (selectedFromList.equals("Technology news")){
+                    Log.d("clicked", "tech news");
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, RecyclerViewFragment.newInstance(techArticlesEndpoint,null), newsFragmentTag)
+                            .addToBackStack("techFragment").
+                            commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+                if (selectedFromList.equals("Law news")){
+                    Log.d("clicked", "tech news");
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, RecyclerViewFragment.newInstance(lawArticlesEndpoint,null), newsFragmentTag)
+                            .addToBackStack("lawFragment")
+                            .commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, GenericTextFragment.newInstance(selectedFromList,null))
+                            .addToBackStack(null)
+                            .commit();
+
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+
+
+
             }
         });
 
@@ -110,16 +156,6 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, WelcomeFragment.newInstance(null, null))
                 .commit();
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -139,10 +175,6 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
             .post(new Runnable() {
                 @Override
                 public void run() {
-
-                    Log.d("legalrunnable", Boolean.toString(accepted_legal_disclaimer));
-
-
 
                     popupView = getLayoutInflater().inflate(R.layout.popup_view, null);
 
@@ -166,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
                     popupView.findViewById(R.id.decline_button).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            popupWindow.dismiss();
+                            //popupWindow.dismiss();
                             sharedPreferences.edit().putBoolean("legal_accepted", false).commit();
                             Intent intent = new Intent(Intent.ACTION_MAIN);
                             intent.addCategory(Intent.CATEGORY_HOME);
@@ -176,8 +208,6 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
                     });
 
                     popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-
-
                 }
 
             });
@@ -247,8 +277,6 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
 
     @Override
     public void recyclerCallback() {
-        Log.d("callbakc", "hi");
-
 
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(Constants.NEWS_FRAGMENT_TAG);
         if (fragment != null && fragment.isVisible()) {
@@ -278,38 +306,64 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
         listDataChild = new HashMap<String, List<String>>();
 
         // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
+        listDataHeader.add("Home");
+        listDataHeader.add("Big data");
+        listDataHeader.add("Terms and definitions");
+        listDataHeader.add("Scope");
+        listDataHeader.add("Key points");
+        listDataHeader.add("Consequences and sanctions");
+        listDataHeader.add("News");
 
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
+        List<String> homeSubchapters = new ArrayList<>();
+        homeSubchapters.add("Home");
+        homeSubchapters.add("Introduction");
 
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
+        // Adding child data$
+        List<String> bigdataSubchapters = new ArrayList<>();
+        bigdataSubchapters.add("What is big data");
+        bigdataSubchapters.add("What is big data used for");
+        bigdataSubchapters.add("How is big data obtained");
+        bigdataSubchapters.add("How and where is data stored");
+        bigdataSubchapters.add("How is data organized");
+        bigdataSubchapters.add("How is data processed");
+        bigdataSubchapters.add("Problems with the GDPR");
 
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
+        List<String> termsandefSubchapters = new ArrayList<>();
+        termsandefSubchapters.add("Terms and definitions");
 
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        List<String> scopeSubchapters = new ArrayList<String>();
+        scopeSubchapters.add("Theory");
+        scopeSubchapters.add("Examples");
+
+
+        List<String> keypoitsSubchapters = new ArrayList<String>();
+        keypoitsSubchapters.add("GDPR principles");
+        keypoitsSubchapters.add("Main principles");
+        keypoitsSubchapters.add("Right to erasure");
+        keypoitsSubchapters.add("Right to data portability");
+        keypoitsSubchapters.add("Privacy by design and default");
+        keypoitsSubchapters.add("Processor and controller");
+        keypoitsSubchapters.add("Accountability");
+        keypoitsSubchapters.add("Security");
+        keypoitsSubchapters.add("Data protection impact assessment");
+        keypoitsSubchapters.add("Data protection officer");
+
+        List<String> consequencesSubchapters = new ArrayList<String>();
+        consequencesSubchapters.add("Fines");
+        consequencesSubchapters.add("Reprimands");
+
+        List<String> newsSubchapters = new ArrayList<String>();
+        newsSubchapters.add("Technology news");
+        newsSubchapters.add("Law news");
+
+        listDataChild.put(listDataHeader.get(0), homeSubchapters);
+        listDataChild.put(listDataHeader.get(1), bigdataSubchapters);
+        listDataChild.put(listDataHeader.get(2), termsandefSubchapters);
+        listDataChild.put(listDataHeader.get(3), scopeSubchapters);
+        listDataChild.put(listDataHeader.get(4), keypoitsSubchapters);
+        listDataChild.put(listDataHeader.get(5), consequencesSubchapters);
+        listDataChild.put(listDataHeader.get(6), newsSubchapters);
+
     }
 }
 

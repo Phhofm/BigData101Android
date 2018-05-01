@@ -206,7 +206,13 @@ public class RecyclerViewFragment extends Fragment  {
 
     }
 
+
+
     private void fetchData(){
+
+
+
+
         OkHttpClient client = new OkHttpClient();
 
 
@@ -240,7 +246,7 @@ public class RecyclerViewFragment extends Fragment  {
                         }
                     });
 
-                };
+                }
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -259,6 +265,14 @@ public class RecyclerViewFragment extends Fragment  {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(!swipeRefreshLayout.isRefreshing() && mDataset.size()== 0){
+                    swipeRefreshLayout.setRefreshing(true);
+                }
+            }
+        });
         dataChanged();
 
 

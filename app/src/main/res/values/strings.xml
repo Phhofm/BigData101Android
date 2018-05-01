@@ -19,4 +19,26 @@
     <string name="combination">Combination</string>
     <string name="big_data_101">Big Data 101</string>
     <string name="legal_disclaimer">No advice\nThis app contains general information about legal matters. The information is not advice, and should not be treated as such.\nLimitation of warranties\nThe legal information on this app is provided “as is” without any representations or warranties, express or implied. BigData101 makes no representations or warranties in relation to the legal information on this app. Without prejudice to the generality of the foregoing paragraph, BigData101 does not warrant that \nthe legal information on this app will be constantly available, or available at all; or\nthe legal information on this app is complete, true, accurate, up-to-date, or non-misleading.\nProfessional assistance\nYou must not rely on the information on this app as an alternative to legal advice from your attorney or other professional legal services provider. If you have any specific questions about any legal matter you should consult your attorney or other professional legal services provider. You should never delay seeking legal advice, disregard legal advice, or commence or discontinue any legal action because of information on this app.\nLiability\nNothing in this legal disclaimer will limit any of our liabilities in any way that is not permitted under applicable law, or exclude any of our liabilities that may not be excluded under applicable law.</string>
+    <string name="accountability">accountability</string>
+    <string name="data_protection_impact_assessment">data protection impact assessment</string>
+    <string name="data_protection_officer">data protection officer</string>
+    <string name="examples">examples</string>
+    <string name="fines">fines</string>
+    <string name="gdpr_principles">gdpr principles</string>
+    <string name="how_and_where_data_is_stored">how and where data is stored</string>
+    <string name="how_big_data_is_obtained">how big data is obtained</string>
+    <string name="how_data_is_organized">how data is organized</string>
+    <string name="how_dat_is_processed">how dat is processed</string>
+    <string name="main_principles">main principles</string>
+    <string name="privacy_by_desing_and_default">privacy by desing and default</string>
+    <string name="problems_with_the_gdpr">problems with the gdpr</string>
+    <string name="processor_and_controller">processor and controller</string>
+    <string name="reprimands">reprimands</string>
+    <string name="right_to_data_portability">right to data portability</string>
+    <string name="right_to_erasure">right to erasure</string>
+    <string name="security">security</string>
+    <string name="terms_and_definitions">terms and definitions</string>
+    <string name="theory">theory</string>
+    <string name="what_is_big_data">what is big data</string>
+    <string name="what_is_big_data_used_for">what is big data used for</string>
 </resources>
