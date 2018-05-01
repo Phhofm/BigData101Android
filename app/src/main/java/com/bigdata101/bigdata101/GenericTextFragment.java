@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -26,6 +28,8 @@ public class GenericTextFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView textView;
 
 
 
@@ -70,7 +74,11 @@ public class GenericTextFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(layoutId, container, false);
+        View rootview = inflater.inflate(layoutId, container, false);
+
+        //textView = rootview.findViewById(R.id.content_text);
+
+        return  rootview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

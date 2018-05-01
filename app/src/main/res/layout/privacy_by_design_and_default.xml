@@ -9,6 +9,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/privacy_by_desing_and_default" />
+        android:text="@string/privacy_by_design_and_default" />
 
 </ScrollView>

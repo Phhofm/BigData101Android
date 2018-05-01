@@ -30,7 +30,7 @@
     <string name="how_data_is_organized">how data is organized</string>
     <string name="how_dat_is_processed">how dat is processed</string>
     <string name="main_principles">main principles</string>
-    <string name="privacy_by_desing_and_default">privacy by desing and default</string>
+    <string name="privacy_by_design_and_default">privacy by design and default</string>
     <string name="problems_with_the_gdpr">problems with the gdpr</string>
     <string name="processor_and_controller">processor and controller</string>
     <string name="reprimands">reprimands</string>
@@ -38,7 +38,9 @@
     <string name="right_to_erasure">right to erasure</string>
     <string name="security">security</string>
     <string name="terms_and_definitions">terms and definitions</string>
-    <string name="theory">theory</string>
+    <string name="theory"><li>hahah</li></string>
     <string name="what_is_big_data">what is big data</string>
     <string name="what_is_big_data_used_for">what is big data used for</string>
+
+
 </resources>
