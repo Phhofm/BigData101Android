@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.bigdata101.bigdata101.constants.Constants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,15 +86,10 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
 
                 if (selectedFromList.equals("Home")) {
                     Log.d("clicked", "home");
-                    for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-
-                        if (fragment != null)
-                            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-
-                    }
 
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, WelcomeFragment.newInstance(null, null))
+                            .addToBackStack(null)
                             .commit();
 
 
@@ -314,53 +310,36 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
         listDataHeader.add("Consequences and sanctions");
         listDataHeader.add("News");
 
-        List<String> homeSubchapters = new ArrayList<>();
-        homeSubchapters.add("Home");
-        homeSubchapters.add("Introduction");
+        List<String> homeSubchapters = Arrays.asList("Home","Introduction");
 
         // Adding child data$
-        List<String> bigdataSubchapters = new ArrayList<>();
-        bigdataSubchapters.add("What is big data");
-        bigdataSubchapters.add("What is big data used for");
-        bigdataSubchapters.add("How is big data obtained");
-        bigdataSubchapters.add("How and where is data stored");
-        bigdataSubchapters.add("How is data organized");
-        bigdataSubchapters.add("How is data processed");
-        bigdataSubchapters.add("Problems with the GDPR");
-
-        List<String> termsandefSubchapters = new ArrayList<>();
-        termsandefSubchapters.add("Terms and definitions");
-
-        List<String> scopeSubchapters = new ArrayList<String>();
-        scopeSubchapters.add("Theory");
-        scopeSubchapters.add("Examples");
+        List<String> bigdataSubchapters = Arrays.asList("What is big data","What is big data used for",
+                "How is big data obtained","How and where is data stored","How is data organized",
+                "How is data processed","Problems with the GDPR");
 
 
-        List<String> keypoitsSubchapters = new ArrayList<String>();
-        keypoitsSubchapters.add("GDPR principles");
-        keypoitsSubchapters.add("Main principles");
-        keypoitsSubchapters.add("Right to erasure");
-        keypoitsSubchapters.add("Right to data portability");
-        keypoitsSubchapters.add("Privacy by design and default");
-        keypoitsSubchapters.add("Processor and controller");
-        keypoitsSubchapters.add("Accountability");
-        keypoitsSubchapters.add("Security");
-        keypoitsSubchapters.add("Data protection impact assessment");
-        keypoitsSubchapters.add("Data protection officer");
+        List<String> termsandefSubchapters = Arrays.asList("Terms and definitions");
 
-        List<String> consequencesSubchapters = new ArrayList<String>();
-        consequencesSubchapters.add("Fines");
-        consequencesSubchapters.add("Reprimands");
 
-        List<String> newsSubchapters = new ArrayList<String>();
-        newsSubchapters.add("Technology news");
-        newsSubchapters.add("Law news");
+        List<String> scopeSubchapters = Arrays.asList("Theory","Examples");
+
+
+        List<String> keypointsSubchapters = Arrays.asList("GDPR principles","Main principles",
+                "Right to erasure","Right to data portability","Privacy by design and default",
+                "Processor and controller","Accountability","Security",
+                "Data protection impact assessment","Data protection officer");
+
+
+        List<String> consequencesSubchapters = Arrays.asList("Fines","Reprimands");
+
+        List<String> newsSubchapters = Arrays.asList("Technology news","Law news");
+
 
         listDataChild.put(listDataHeader.get(0), homeSubchapters);
         listDataChild.put(listDataHeader.get(1), bigdataSubchapters);
         listDataChild.put(listDataHeader.get(2), termsandefSubchapters);
         listDataChild.put(listDataHeader.get(3), scopeSubchapters);
-        listDataChild.put(listDataHeader.get(4), keypoitsSubchapters);
+        listDataChild.put(listDataHeader.get(4), keypointsSubchapters);
         listDataChild.put(listDataHeader.get(5), consequencesSubchapters);
         listDataChild.put(listDataHeader.get(6), newsSubchapters);
 
