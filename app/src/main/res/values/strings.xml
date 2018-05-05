@@ -19,12 +19,74 @@
     <string name="combination">Combination</string>
     <string name="big_data_101">Big Data 101</string>
     <string name="legal_disclaimer">No advice\nThis app contains general information about legal matters. The information is not advice, and should not be treated as such.\nLimitation of warranties\nThe legal information on this app is provided “as is” without any representations or warranties, express or implied. BigData101 makes no representations or warranties in relation to the legal information on this app. Without prejudice to the generality of the foregoing paragraph, BigData101 does not warrant that \nthe legal information on this app will be constantly available, or available at all; or\nthe legal information on this app is complete, true, accurate, up-to-date, or non-misleading.\nProfessional assistance\nYou must not rely on the information on this app as an alternative to legal advice from your attorney or other professional legal services provider. If you have any specific questions about any legal matter you should consult your attorney or other professional legal services provider. You should never delay seeking legal advice, disregard legal advice, or commence or discontinue any legal action because of information on this app.\nLiability\nNothing in this legal disclaimer will limit any of our liabilities in any way that is not permitted under applicable law, or exclude any of our liabilities that may not be excluded under applicable law.</string>
-    <string name="accountability">accountability</string>
-    <string name="data_protection_impact_assessment">data protection impact assessment</string>
-    <string name="data_protection_officer">data protection officer</string>
-    <string name="examples">examples</string>
-    <string name="fines">fines</string>
-    <string name="gdpr_principles">gdpr principles</string>
+    <string name="accountability">
+        GDPR brought some big changes such as in accountability. In Article 5 (2) it is stated that your organisation is responsible for and shall be able to demonstrate compliance with the other principles from paragraph 1.
+        To meet the requirements of accountability, it is important for you to install appropriate organisational and technical measures.
+        In some cases there are measures which you must or can take, like:\n\n
+        <li>deciding on a data protection officer</li>\n\n
+        <li>keeping documentation of your processing activities</li>\n\n
+        <li>adopting and installing data protection policies</li>\n\n
+        <li>taking a ‘data protection by design and default’ approach</li>\n\n
+        <li>preparing written contracts with organisations that process personal data by your order</li>\n\n
+        <li>recording and, where necessary, reporting personal data breaches</li>\n\n
+        <li>installing proper security measures</li>\n\n
+        <li> registering to certification schemes and considering relevant codes of conduct; and
+executing data protection impact assessments for uses of personal data that are likely to be categorised as high risk to individuals' interests.</li>\n\n
+        There are precise provisions about documenting your processing activities in the GDPR. You have to consider that some actions such as data sharing, retention and processing purposes have to be kept. With the help documentation, you can improve both your data governance and comply with other aspects of the GDPR. Documentation obligations must be met by controllers and processors. For small and medium-sized organisations, documentation requirements are limited to certain types of processing activities. Your records have to reflect the current processing actions and they also have to be kept up to date. Example:Data collection regarding CRM (Customer-Relationship-Management)
+    </string>
+    <string name="data_protection_impact_assessment">
+        If your organisation wants to identify and minimise the data protection risks of a project, the data protection impact assessment (DPIA) is a big help. Your DPIA has to:\n\n
+        <li>characterise the context, scope, purposes and nature of the processing</li>\n\n
+        <li>detect and deal with risks to individuals</li>\n\n
+        <li>evaluate proportionality, compliance and necessity measures;and</li>\n\n
+        <li>detect further measures to minimise those risks</li>\n\n
+
+    </string>
+    <string name="data_protection_officer">
+If you are a public authority or if you execute particular types of processing activities, the GDPR sets out the obligation for you to announce a data protection officer (DPO).\n\n
+        <li>There are specific tasks of a DPO. He/She takes the role of an advisor as he/she helps you checking internal compliance, updates you on your data protection duties, allocates you on the topic of Data Protection Impact Assessments (DPIAs) and is a general contact person for supervisory authority and data cases.</li>\n\n
+        <li>The DPO has to fulfill some features like showing the required knowledge about data subjects, properly resourced, independent and with competence to report to the highest management level.</li>\n\n
+        <li>DPOs are a big support for you to ensure compliance and meet the obligations of accountability.</li>\n\n
+        <li>In an existing organisation, the DPO can be appointed from a group of employees who are already working in that organisation or could also externally be selected.</li>\n\n
+    </string>
+    <string name="examples">
+        <li><b>stay abroad</b> The case  of insurance protection during  a time-limited stay in a foreign country and paid services of health insurance</li>\n\n
+        <li><b>cross-border commuter</b> Persons who live in any EU member country but work in Switzerland must insure themselves
+and their non-active family members in Switzerland. (Federal Health Insurance Act/KVG)}</li>\n\n
+        <li><b>seasonal workers</b> Persons returning back to the EU and having some claims on insurance benefits ( for example health insurance),}</li>\n\n
+    </string>
+    <string name="fines">
+        The regulation lays out maximum penalties which differ depending on the type of offense. One of the significant impacts is that the GDPR increases the maximum fine amount – up to €20,000,000 or up to (what can also be higher) four percent of the company’s annual “global turnover of the preceding year. The consequences for global giants (such as Amazon), which have total revenues, net of taxes in the billions are exorbitant sums. The amount of fine – if any – that is actually imposed will depend on a number of different factors. An administrative fine must be effective, proportionate and dissuasive. Article 83 of the GDPR addresses in detail the conditions for imposing administrative fines, and specifically names factors that are to be taken into consideration:\n\n
+        <li>The nature, gravity, and duration of the violation</li>\n\n
+        <li>The categories of personal data that are affected</li>\n\n
+        <li>Previous violations</li>\n\n
+        <li>Intent or negligence</li>\n\n
+        <li>Actual harm done and efforts to mitigate the damage to data subjects</li>\n\n
+        <li>Degree of responsibility of the controller or processor</li>\n\n
+        <li>Certifications and adherence to codes of conduct</li>\n\n
+        <li>Reporting of the violation</li>\n\n
+        <li>Cooperation (or lack thereof) with authorities</li>\n\n
+
+In addition, the €20,000,000 maximum apply to the higher of two tiers of violations, which include more serious offenses, such as those pertaining to the rules for obtaining consent, data subjects’ rights, rules governing data transfer, obligations to member states, and violation of an order. Namely for infringements of basic principles which are stated in Art. 5, 6, 7 and 9 GDPR.\n\n
+The lower tier of violations has a maximum fine limit that is half that of the upper tier: €10,000,000 or two percent of annual turnover. Some violations that fall into this category include:\n\n
+
+        <li>Notification of a data breach to the data subject whose personal data was impacted</li>n\n
+        <li>Notification of a data breach to the supervisory authority</li>n\n
+        <li>Failure to properly designate a data protection officer (when required)</li>n\n
+        <li>Certain conditions surrounding obtaining a child’s consent</li>n\n
+
+    </string>
+    <string name="gdpr_principles">
+        Under the GDPR, the data protection principles set out the main responsibilities for organisations which are quite similar to Swiss law and are stated in Art. 5 paragraph 1 lit. a-f  \&amp; 2 GDPR :\n\n
+        <li>lawfulness, fairness and transparency</li>\n\n
+        <li>purpose limitation</li>\n\n
+        <li>data minimisation</li>\n\n
+        <li>accuracy</li>\n\n
+        <li>storage limitation</li>\n\n
+        <li>integrity and confidentiality</li>\n\n
+        <li>accountability</li>\n\n
+
+    </string>
     <string name="how_and_where_data_is_stored">A system is needed that not only has the capacity to store this huge amount of data, but also provides fast access times and parallel access in case the data is used in different processes simultaneously. Since a single server that provides these attributes would be very expensive, commodity clusters have been the go to. A computer cluster is a set of connected computers that appear as a single system. Each computer, called node, runs its own instance of operating system and performs tasks, controlled and scheduled by software.Clusters are usually deployed to improve performance and availability over that of a single computer. Commodity custer simply means that the data center consists of interconnected consumer-grade hardware,because they are relatively cheap and available in large quantities. Those commodity clusters are much more cost-effective than single computers of comparable speed or availability. Since these consumer-grade hardware fail from time to time, we need to make sure to store multiple copies of a single file on different nodes (replication) in case a node fails, no data is lost. Also replication helps with the parallel access, since two different nodes can be accessed to get the same data.
 We call this a parallel file system, which is a type of clustered file system, that spread data across multiple storage nodes for redundancy and performance. Those file systems have different design goals, they aim for access transparency (clients are unaware that files are distributed and can access them in the same way as local files), location transparency, replication transparency (client should be unaware of replicated files across multiple servers) and migration transparency (files move around without clients knowledge).
 One of the solutions, the Hadoop Distributed File System (HDFS) splits data into blocks and stores them redundantly on the nodes. It has NameNodes, that stores metadata like which nodes are alives and is the primary node that gets accesses by a client that wants to access or store data. As a simplified example, if the client wants to store a file, it is split up into blocks. The client then asks the NameNode where to store the first block, and the NameNode answers with three node-addresses. The client then stores the first block on these three nodes, and repeats the whole process for the second block and then all following, until the whole file is stored. Accessing a file works in a similar manner.
@@ -36,16 +98,83 @@ Processing big data on distributed systems adds new complexities that did not ex
 In general, there are different methods or strategies. The used methods are classification, where we predict to what income group a person belongs; class probability estimation, with which probability a person belongs to a certain income group; regression, how much income a specific person has; segmentation, where we cluster all people; and association rule mining, where we find functional dependencies. A cluster analysis finds groups of objects such that the object in the group will be similar to one another and different from objects in other groups. Simply said we find similarities and differences and build groups accordingly to specific criterias. Association rule mining finds rules that will predict the occurence of an item based on the occurences of other items.
 For this processing, we use programming abstractions like MapReduce. It distributed the tasks and data automatically in a cluster and is platform agnostic. It was optimized for a hardware environment where CPUs and disk space is cheap and plentiful and Memory was limited. Since memory is becoming cheaper, Apache Spark responded to this trend by offering distributed in-memory processing. An example for a simple task could be a distributed word count in a very large text file, where data is split into chunks and countings run on it, and the separate results are in the end merged together.
 </string>
-    <string name="main_principles">main principles</string>
-    <string name="privacy_by_design_and_default">privacy by design and default</string>
+    <string name="reporting">
+With the implementation of the GDPR there will be a further obligation on all organisations, which is reporting specific kinds of personal data breach to the appropriate supervisory authority. Where manageable, you have to report the breach within 72 hours of noticing it.\n\n
+        <li>You also have to brief those individuals immediately on the breach, whose rights and freedoms could be in a high risk of being influenced.</li>\n\n
+        <li>Independent of the fact whether you are obliged to inform or not, you also have to keep a record of any personal data breaches.</li>\n\n
+        <li>It is important for you to have solid breach detection systems, investigation and internal reporting procedures. Therefore, decision-making processes can be fostered whether or not you have to inform appropriate supervisory authority and the affected individuals.}</li>\n\n
+    </string>
+    <string name="privacy_by_design_and_default">
+        Under the GDPR, you have a general obligation to implement technical and organisational measures to show that you have considered and integrated data protection into your processing activities. Privacy by design aims to protect the users’ privacy and give them control about their data by measures of the design stage.The privacy by default approach states that systems should be designed to always ask for permission to process/collect data.\n
+This means that data controllers will need to take account of the following:\n\n
+
+        <li>Step 1 Build the right to data portability and the right to be forgotten directly into the software.</li>\n\n
+        <li>Step 2 Identify the risks concerning the rights and freedoms of individuals.</li>\n\n
+        <li>Step 3 Identify the data flows of products and services</li>\n\n
+        <li>Step 4 Develop new standard processes and templates which are compliant to the GDPR</li>\n\n
+
+    </string>
     <string name="problems_with_the_gdpr">problems with the gdpr</string>
-    <string name="processor_and_controller">processor and controller</string>
-    <string name="reprimands">reprimands</string>
-    <string name="right_to_data_portability">right to data portability</string>
-    <string name="right_to_erasure">right to erasure</string>
-    <string name="security">security</string>
-    <string name="terms_and_definitions">terms and definitions</string>
-    <string name="theory"><li>hahah</li></string>
+    <string name="processor_and_controller">
+        	Processor &amp; Controller
+
+The application of the GDPR possibly establishes a fairer balance between data controllers and data processors considering the continuing role of data controllers. On one hand data controllers had to deal with their own data protection compliance obligations and on the other hand with the actions of their processors, which was seen in an unfair relation. So now there is a possibility for brokers and insurers, with some exceptions, to enable data controllers themselves to minimise the liability.\n\n
+However, long-term negotiations about contract matters could occur since data processors will inevitably need precise contractual provisions regarding:\n\n
+        <li>the agreed relationship between the actors with respect to each aspect of the processing action</li>\n\n
+        <li>data controller and data processor subject to their responsibilities(Art.24 GDPR)</li>\n\n
+        <li>the ensurance of their own compliance with GDPR obligations in connection with receiving specific processing instructions.</li>\n\n
+
+Such obligations could slow down data processing agreements and negotiations by making them too complex. So, you should be prepared for long-term negotiation processes.\n
+You are responsible for reviewing data classifications to ensure that data, which will now definitively be deemed personal data, is subject to the appropriate protections.\n
+Ensure all data from which an individual can be identified (which will include location data and IP addresses) is covered by privacy policies and fair processing notices.\n
+
+        <li>You need to review all data processing arrangements to ensure the contracts contain:</li>\n\n
+        <li>all of the requirements set out in Article 28; and</li>\n\n
+        <li>appropriate risk allocation of liability for data breaches between data processors and data controllers.</li>\n\n
+
+Furthermore, you should review contracts with a prioritised system taking into consideration sensitivity and volume of personal data that is processed.
+    </string>
+    <string name="reprimands">
+        In addition to or instead of fines, Article58 provides for the issuance of warnings and reprimands.\n\n
+        You could also have your certification withdrawn, or be ordered to take action to carry out one or more of the obligations under the regulation.
+    </string>
+    <string name="right_to_data_portability">
+        A new right is introduced with the Art.20 GDPR where customers  are allowed to obtain and reuse all kinds of personal data for their own purposes across different services. Without obstacles in usability, this article also allows you to move, copy or transfer personal data easily from one IT environment to another in a secure manner (to keep data on their personal devices). Data portability helps taking advantage of applications and services which can use this data to optimise consumption behaviour like spending habits or finding more attractive deals. This has a major impact on technical aspects which data controllers will need to ensure that their systems, connected products, applications and devices, which collect and store information on data subjects, also have the added functionality of porting and transmitting data.\n\n
+        In some cases, this will require controllers to tweak or redesign some systems, products, applications and devices. Furthermore, the new porting functionality must export data in a structured, commonly used and machine-readable format so that reuse of the data is possible.
+        The GDPR does not establish a general right to data portability for cases where the processing of personal data is not based on consent or contract. Cases: A person who is voluntary insured (right to portability is given), A person who is under the compulsory insurance (for example as part of the health insurance, Federal Health Insurance Act/KVG) has no right to portability because the processing of personal data is not based on consent or contract but based on law.
+    </string>
+    <string name="right_to_erasure">
+        Customers have the right to have personal data erased, which is given to them by Art.17 GDPR. Under Swiss law, this specific right to erasure is also known as ‘the right to be forgotten’. It is also not explicitly regulated in Swiss law but can be provided in accordance to the principle of Art. 4 DPL. If customers want to start the process of erasure, they have to make a request verbally or in writing. You have one month to respond to a request. The request must then be examined. The right to erasure only applies in certain circumstances and is not absolute. There are also other ways in which the GDPR asks you to consider whether to delete personal data or not. The company  must comply without “undue delay” and at no cost to the requesting party.\n\n
+        <li>Check if the data needs to be erased?</li>\n\n
+        <li>Find out where the requested data resides.</li>\n\n
+        <li>Evaluate all source data, reprocessed and extracted data systems.</li>\n\n
+        <li>Evaluate data which was given to third party systems (outsourcing)</li>\n\n
+    </string>
+    <string name="security">
+The ‘security principle’ as a key principle of the GDPR sets the scale for you in processing personal data securely in a manner of ‘appropriate technical and organisational measures’. To stick to this principle, you will need to take into account topics like organisational policies, physical and technical measures and risk analysis.\n\n
+        <li>Furthermore, you have to consider extra conditions about the security of your processing. This applies to data processors as well.</li>\n\n
+        <li>You should consider varying your measures. Where conventional, you can for example use  pseudonymisation and encryption.</li>\n\n
+        <li>Depending on your circumstances and your processing risks, you can take the state of the art and costs of implementation into account when choosing the right measures.</li>\n\n
+        <li>In the case of a technical or physical trends, your chosen measures must be able to grant you restoring access and availability to personal data in due time.</li>\n\n
+        <li>The ‘confidentiality, integrity and availability’ including the process of personal data in your systems and services have to be complied with the measures you choose.</li>\n\n
+        <li>Besides, in terms of testing the effectiveness of your measures, you have to consider that you have installed convenient processes. Hence, you should conduct any kind of technical and organisational optimising.</li>
+    </string>
+    <string name="terms_and_definitions">
+        <li><b>personal data</b> means any information relating to an identified or identifiable natural person (‘data subject’); an identifiable natural person is one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person.</li>\n\n
+        <li><b>processing</b> means any operation or set of operations which are performed on personal data or on sets of personal data, whether or not by automated means, such as collection, recording, organisation, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure or destruction</li>\n\n
+        <li><b>Controller:</b> natural or legal person, public authority or agency (etc.) which determines the purposes and means of the processing of personal data
+Processor: natural or legal person, public authority or agency (etc.) which processes personal data on behalf of the controller</li>\n\n
+        <li><b>filing system</b> means any structured set of personal data which is accessible according to specific criteria, whether centralised, decentralised or dispersed on a functional or geographical basis</li>\n\n
+        <li><b>Recipient:</b> natural or legal person, public authority or agency (etc.) to whom the data is disclosed</li>\n\n
+        <li><b>Third party:</b> natural or legal person, public authority or agency (etc.) other than the data subject, controller or processor who is authorised to process the data under direct authority of controller or processor</li>
+    </string>
+    <string name="theory">There is an excellent  mnemonic aid: The GDPR applies if the processor or controller is settled in Switzerland and the antagonist is settled in the EU (for example in case of outsourcing)Does your company…\n\n
+        <li>have customers with their seat in an EU country and do you offer them services (like international insurance policy)
+        </li>\n\n
+        <li>have an establishment within the EU</li>\n\n
+        <li>monitor the behaviour of EU citizens within the EU (this can also be possible by data processing on an app or website)</li>\n\n
+        <li>process personal data of employers established in the EU </li>\n\n
+    </string>
     <string name="what_is_big_data">Big data describes very large collections of data. These datasets are generally too large for conventional home computers or traditional applications to process it in a timely manner. The three properties of big data are Volume, Velocity and Variety. Today\'s organizations collect a lot of data (volume), from different sources. This data might involve all financial transactions, data collected through their website, all their customer data, data collected from their social media page (like comments), phone call metadata (timestamps and numbers), estimated values of buildings, history of buildings like when it was renovated, data collected by sensors and so forth. Simply the storing of such huge amount of collected data introduced new challenges. The data that gets collected through sensors generates a constant data-streams which must sometimes be structured or even processed in real time (velocity). This collection of data from very different sources comes in a variety of forms, mostly in an unstructured form or it might be already structured, in numerical form, or in plaintext, or as audio -file or -stream, and so forth. Structuring and/or processing of such very different formats is a complex challenge in itself.</string>
     <string name="what_is_big_data_used_for">Only the collecting and storing of huge amounts of data itself does not create a lot of value. The value is created by analyzing and processing this data. Data Science methods and processes allow us to extract knowledge from that data, to help us make an informed decision about specific matters. It allows us to find answers that enable us to for example generate coupons at the point of sale based on the customer’s buying habits (cumulus, super card). Other forms are to recalculate entire risk portfolios in minutes or to detect fraudulent behavior before it affects our organization.
 Big Data can support the company in assessing and managing risks. The insurance industry is competitive and companies need to be profitable. Data science can help those companies in the development of their business model and insurance products and develop new tools for the company to understand and analyze their customer data, to help retaining customers and attracting prospective customers. More specifically, this data can be used to optimized and support marketing programs by optimizing the best return for investments, targeting the optimal potential customers for a specified market segment. We can also use area specific market analytics to understand the risks of introducing a new particular insurance product rather than only using predictive analysis.

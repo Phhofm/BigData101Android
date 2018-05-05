@@ -314,8 +314,8 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
 
         // Adding child data$
         List<String> bigdataSubchapters = Arrays.asList("What is big data","What is big data used for",
-                "How is big data obtained","How and where is data stored","How is data organized",
-                "How is data processed","Problems with the GDPR");
+                "How and where is data stored",
+                "How is data processed");
 
 
         List<String> termsandefSubchapters = Arrays.asList("Terms and definitions");
@@ -324,9 +324,9 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
         List<String> scopeSubchapters = Arrays.asList("Theory","Examples");
 
 
-        List<String> keypointsSubchapters = Arrays.asList("GDPR principles","Main principles",
+        List<String> keypointsSubchapters = Arrays.asList("GDPR principles",
                 "Right to erasure","Right to data portability","Privacy by design and default",
-                "Processor and controller","Accountability","Security",
+                "Processor and controller","Accountability","Security", "Reporting",
                 "Data protection impact assessment","Data protection officer");
 
 
