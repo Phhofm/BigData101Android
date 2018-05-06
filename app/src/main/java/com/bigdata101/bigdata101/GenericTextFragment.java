@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,20 @@ public class GenericTextFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-    int layoutId = getResources().getIdentifier(mParam1.toLowerCase().replace(" ","_"),"layout", this.getActivity().getPackageName());
+        String resource;
+        if(mParam1.contains("Art.")){
+            int endIndex = 0;
+            endIndex = mParam1.indexOf("Art.");
+
+           resource = mParam1.substring(0, endIndex).toLowerCase().trim().replace(" ", "_");
+        }else {
+            resource = mParam1.toLowerCase().replace(" ", "_");
+        }
+
+
+
+        Log.d("resource", resource);
+    int layoutId = getResources().getIdentifier(resource,"layout", this.getActivity().getPackageName());
 
 
         // Inflate the layout for this fragment

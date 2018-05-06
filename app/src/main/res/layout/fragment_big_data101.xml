@@ -55,20 +55,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/law_text" />
 
-            <TextView
-                android:id="@+id/combination"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/combination"
-                android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
-
-            <TextView
-                android:id="@+id/combination_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/combination_text"
-                android:text="@string/combination_text" />
 
         </LinearLayout>
 
