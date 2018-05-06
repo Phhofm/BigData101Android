@@ -324,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements MyFragmentInterac
         List<String> scopeSubchapters = Arrays.asList("Theory","Examples");
 
 
-        List<String> keypointsSubchapters = Arrays.asList("GDPR principles","Accountability Art.5 § 2", "Records of processing activities Art.30",
+        List<String> keypointsSubchapters = Arrays.asList("GDPR principles Art.5 § 1","Accountability Art.5 § 2", "Records of processing activities Art.30",
                 "Right to erasure Art.17","Right to data portability Art.20","Privacy by design and default Art.25",
                 "Processor and controller Art.24 / 26-29","Security Art.32", "Reporting Art.33",
                 "Data protection impact assessment Art.35","Data protection officer Art.37");
